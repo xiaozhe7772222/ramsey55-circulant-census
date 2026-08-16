@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta charset="utf-8"><title>Circulant Ramsey(5,5) — 论文预览</title>
+<style>
+ body{font-family:"Microsoft YaHei",SimHei,sans-serif;background:#f6f8fa;margin:0;padding:28px;color:#1f2937;line-height:1.75}
+ .wrap{max-width:900px;margin:auto}
+ h1{font-size:22px;text-align:center}
+ .author{text-align:center;color:#4b5563;margin-bottom:8px}
+ .abstract{background:#fff;border:1px solid #d1d5db;border-left:5px solid #2b6cb0;padding:14px 18px;border-radius:6px}
+ h2{color:#1a365d;border-bottom:2px solid #cbd5e0;padding-bottom:4px}
+ table{border-collapse:collapse;margin:10px auto}
+ td,th{border:1px solid #cbd5e0;padding:4px 10px;text-align:center}
+ .red{color:#c53030;font-weight:bold} .green{color:#2f855a;font-weight:bold}
+ .note{background:#fffff0;border:1px solid #ecc94b;padding:8px 12px;border-radius:6px;font-size:.92em}
+ img{max-width:100%;border:1px solid #d1d5db;border-radius:8px;margin-top:8px}
+ code{background:#edf2f7;padding:1px 5px;border-radius:4px}
+</style></head>
+<body><div class="wrap">
+<h1>Circulant Ramsey(5,5) Colorings:<br>Maximum Order 41 and the Exclusion Band 42–46</h1>
+<p class="author"><b>Xiao Zhe</b> (小哲)</p>
+
+<div class="abstract"><b>摘要（工作论文 v0.1，作者：小哲）</b><br>
+本文通过穷举计算确定了 <b>circulant Ramsey(5,5) 染色</b>（红蓝两边均为循环图且各无 K₅）在
+5 ≤ n ≤ 46 上的<b>完整频谱</b>。主要结果：① 最大阶为 <b>41</b>，恰有 <b>20</b> 个生成集（补图对意义下 10 个）；
+② <b>42 ≤ n ≤ 46 全部不存在</b>——结合 R(5,5) ≤ 46（Angeltveit–McKay 2024）得：一切 n ≥ 42 的 circulant
+双染色必含单色 K₅，循环构造无法给出 R(5,5) ≥ 43 的见证；③ 非单调性：c(39)=0 而 c(40),c(41)>0。
+计算完全可复现：JS 与 Python 独立实现逐条一致（含 41 顶点 20 个解集逐一比对），并经
+R(3,3)=6、R(4,4)=18、Paley(17)、328 个 McKay 图、Ivanov(2026) 五重交叉验证。
+</div>
+
+<div class="note"><b>诚实边界</b>：本工作不解决 R(5,5) 本身（仍为 43 ≤ R(5,5) ≤ 46）；
+它解决的是 circulant 亚类的完整定性。n=42/43 排除与 Ivanov(2026) 一致（已在文中引用标注），
+<b>n=44/45 排除与完整计数谱、41 顶点普查为本工作新增</b>。</div>
+
+<h2>贡献清单</h2>
+<ol>
+<li><b>完整计数谱</b>：c(n)，n=5…46（42 行为止精确值，此前无人给出）</li>
+<li><b>最大阶 41 且恰 20 个生成集</b>（极值对象全文列出）</li>
+<li><b>排除带 42–46</b>：circulant 构造无法提升 R(5,5) 下界；n=44/45 新增</li>
+<li><b>非单调性观察</b>：circulant 类逼迫性不单调（c(39)=0 &lt; c(40),c(41)&gt;0）</li>
+<li><b>方法论样板</b>：双实现逐条全等 + 五重校准 + 全量数据开源</li>
+</ol>
+
+<h2>频谱表（节选关键区段）</h2>
+<table>
+<tr><th>n</th><th>c(n)</th><th>n</th><th>c(n)</th><th>n</th><th>c(n)</th><th>n</th><th>c(n)</th></tr>
+<tr><td>17</td><td>102</td><td>27</td><td>360</td><td>38</td><td>9</td><td>42</td><td class="red">0</td></tr>
+<tr><td>18</td><td>84</td><td>28</td><td>165</td><td>39</td><td class="red">0</td><td>43</td><td class="red">0</td></tr>
+<tr><td>29</td><td>394</td><td>30</td><td>100</td><td>40</td><td>12</td><td>44</td><td class="red">0</td></tr>
+<tr><td>31</td><td>370</td><td>32</td><td>192</td><td>41</td><td class="green">20</td><td>45</td><td class="red">0</td></tr>
+<tr><td>33</td><td>140</td><td>34</td><td>110</td><td>35</td><td>60</td><td>46</td><td class="red">0</td></tr>
+</table>
+<p style="text-align:center;color:#4b5563">完整 42 行见 <code>results/CR55/counts.csv</code>；全部解集见 <code>sets_n*.txt</code>。</p>
+
+<h2>频谱图</h2>
+<img src="fig_spectrum.png" alt="spectrum">
+
+<h2>产物清单</h2>
+<ul>
+<li><code>paper/paper.tex</code> — 可编译 LaTeX（作者 Xiao Zhe/小哲），本地 pdflatex 编译即可</li>
+<li><code>paper/paper.md</code> — Markdown 工作版</li>
+<li><code>paper/fig_spectrum.png/.pdf</code> — 出版级图</li>
+<li><code>results/CR55/</code> — counts.csv + 全部解集 + README</li>
+<li><code>scan_v5.js / scan_dump.js / xcheck3.py</code> — 复现脚本</li>
+</ul>
+
+</div></body></html>
+
